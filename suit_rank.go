@@ -1,4 +1,4 @@
-package card
+package libcard
 
 type SuitRankCard struct {
 	Suit int

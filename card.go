@@ -1,4 +1,4 @@
-package card
+package libcard
 
 type Comparer interface {
 	// < 0 means the context card is smaller, the argument card is larger

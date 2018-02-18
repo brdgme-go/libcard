@@ -1,4 +1,4 @@
-package card
+package libcard
 
 import (
 	"testing"
