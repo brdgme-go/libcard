@@ -34,7 +34,7 @@ func Standard52Deck() Deck {
 	d := Deck{}
 	for suit := STANDARD_52_SUIT_CLUBS; suit <= STANDARD_52_SUIT_SPADES; suit++ {
 		for rank := STANDARD_52_RANK_ACE; rank <= STANDARD_52_RANK_KING; rank++ {
-			d = append(d, SuitRankCard{
+			d = append(d, Card{
 				Suit: suit,
 				Rank: rank,
 			})
@@ -47,7 +47,7 @@ func Standard52DeckAceHigh() Deck {
 	d := Deck{}
 	for suit := STANDARD_52_SUIT_CLUBS; suit <= STANDARD_52_SUIT_SPADES; suit++ {
 		for rank := STANDARD_52_RANK_2; rank <= STANDARD_52_RANK_ACE_HIGH; rank++ {
-			d = append(d, SuitRankCard{
+			d = append(d, Card{
 				Suit: suit,
 				Rank: rank,
 			})
@@ -59,14 +59,14 @@ func Standard52DeckAceHigh() Deck {
 func Standard52DeckWithJokers() (d Deck) {
 	d = Standard52Deck()
 	for i := 0; i < 2; i++ {
-		d = append(d, SuitRankCard{
+		d = append(d, Card{
 			Suit: STANDARD_52_SUIT_JOKER,
 		})
 	}
 	return d
 }
 
-func (c SuitRankCard) RenderStandard52() string {
+func (c Card) RenderStandard52() string {
 	var (
 		symbol string
 		colour string
@@ -103,7 +103,7 @@ func (c SuitRankCard) RenderStandard52() string {
 	return fmt.Sprintf(`{{c "%s"}}%s%s{{_c}}`, colour, symbol, rank)
 }
 
-func (c SuitRankCard) RenderStandard52FixedWidth() string {
+func (c Card) RenderStandard52FixedWidth() string {
 	output := c.RenderStandard52()
 	if c.Rank != 10 {
 		output += " "

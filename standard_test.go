@@ -5,7 +5,7 @@ import (
 )
 
 func TestRenderStandard52(t *testing.T) {
-	c := SuitRankCard{
+	c := Card{
 		Suit: STANDARD_52_SUIT_CLUBS,
 		Rank: STANDARD_52_RANK_ACE,
 	}
@@ -19,7 +19,7 @@ func TestRenderStandard52(t *testing.T) {
 	if output != expected {
 		t.Error("Expected", expected, "but got", output)
 	}
-	c = SuitRankCard{
+	c = Card{
 		Suit: STANDARD_52_SUIT_DIAMONDS,
 		Rank: STANDARD_52_RANK_10,
 	}
@@ -33,7 +33,7 @@ func TestRenderStandard52(t *testing.T) {
 	if output != expected {
 		t.Error("Expected", expected, "but got", output)
 	}
-	c = SuitRankCard{
+	c = Card{
 		Suit: STANDARD_52_SUIT_HEARTS,
 		Rank: STANDARD_52_RANK_KING,
 	}
@@ -47,7 +47,7 @@ func TestRenderStandard52(t *testing.T) {
 	if output != expected {
 		t.Error("Expected", expected, "but got", output)
 	}
-	c = SuitRankCard{
+	c = Card{
 		Suit: STANDARD_52_SUIT_SPADES,
 		Rank: STANDARD_52_RANK_QUEEN,
 	}
@@ -75,7 +75,7 @@ func TestRenderStandard52(t *testing.T) {
 
 func TestAceHigh(t *testing.T) {
 	d := Standard52DeckAceHigh()
-	if d[len(d)-1].(SuitRankCard).Rank <= STANDARD_52_RANK_KING {
+	if d[len(d)-1].Rank <= STANDARD_52_RANK_KING {
 		t.Fatal("Expected ace value to be higher than king")
 	}
 }

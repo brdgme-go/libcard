@@ -20,8 +20,8 @@ func (d Deck) Remove(removeCard Card, n int) (Deck, int) {
 	removed := 0
 	newD := d[:0]
 	for _, c := range d {
-		result, comparable := c.Compare(removeCard)
-		if comparable && result == 0 && (n < 0 || removed < n) {
+		result := c.Compare(removeCard)
+		if result == 0 && (n < 0 || removed < n) {
 			removed++
 		} else {
 			newD = newD.Push(c)
@@ -61,8 +61,8 @@ func (d Deck) Len() int {
 // Returns whether the item at offset i is less than the item at offset j, used
 // for sorting
 func (d Deck) Less(i, j int) bool {
-	result, comparable := d[i].Compare(d[j])
-	return comparable && result < 0
+	result := d[i].Compare(d[j])
+	return result < 0
 }
 
 // Swaps the cards at indexes i and j
@@ -121,13 +121,4 @@ func (d Deck) ShiftN(n int) (shifted Deck, remaining Deck) {
 		panic("Not enough cards to shift")
 	}
 	return d[:n], d[n:]
-}
-
-// Converts deck to a flat array of SuitRankCard
-func (d Deck) ToSuitRankCards() []SuitRankCard {
-	cards := make([]SuitRankCard, d.Len())
-	for i, c := range d {
-		cards[i] = c.(SuitRankCard)
-	}
-	return cards
 }
